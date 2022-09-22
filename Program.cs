@@ -19,9 +19,9 @@ namespace unicornassignment
         {
             // declare variables
             string donorName = "", unicornName = "";
-            char options, optionTotal = ' ', penOptions = ' ', gateOptions = ' ';
+            char options, optionTotal = ' ', penOptions = ' ', gateOptions = ' ', gateBoolean = ' ', paintIf = ' ', mealBoolean = ' ', mealUpgrade = ' ';
             double monthAmount = 0, months = 0, donationAmount = 0, wallWidth = 0, backWallWidth = 0, gateWidth = 0, gateHeight = 0,
-                wallPrice = 0, squareFeet = 0;
+                wallPrice = 0, wallArea = 0, gateArea = 0, gatePrice = 0, mealPrice = 0, area = 0,;
             // inputs
             // menu donation type
             Console.WriteLine("***** Welcome to the Unicorn Rescue Society Sponsor Estimator *****");
@@ -72,6 +72,12 @@ namespace unicornassignment
             Console.Write("What is the width of the 2 walls (in feet)? ");
             wallWidth = double.Parse(Console.ReadLine());
             Console.Write("What is the width of the back wall (in feet)? ");
+            // 20 width of wall * 12 height feet * 2 for amount of walls
+            // 480 * 4
+            // 1920
+            // 10 - 8 * 12 for back wall
+            // 96
+            // 2 * 12 * 4 = 96
             backWallWidth = double.Parse(Console.ReadLine());
             Console.Write("What is the width of the gate? ");
             gateWidth = double.Parse(Console.ReadLine());
@@ -82,12 +88,14 @@ namespace unicornassignment
 
             // wall price calculations
             // length x width  = square feet
-            squareFeet = (wallWidth * backWallWidth);
-            wallPrice = (squareFeet * 4);
+            if (gateArea < backWallWidth)
+          
+            wallArea = ((wallWidth * 24) * 4 );
+           
 
             // gate menu
             Console.WriteLine("***** Gate Style ******");
-            Console.WriteLine("Available gates (prices epr square foot):");
+            Console.WriteLine("Available gates (prices per square foot):");
             Console.WriteLine("\tW- Wooden ($3) ");
             Console.WriteLine("\tS- Silver ($8) ");
             Console.WriteLine("\tG- Gold ($15) ");
@@ -99,7 +107,7 @@ namespace unicornassignment
             switch (gateOptions)
             {
                 case 'W':
-                    
+
 
                     break;
                 case 'S':
@@ -107,8 +115,87 @@ namespace unicornassignment
                 case 'G':
                     break;
             }
+            // (must use if and switch, if will be used when asking to change gate paint or a meal upgrade yes or no
+            // gate paint change option
+            Console.Write("Would you like to change the gate paint (Y/N)?");
+            gateBoolean = char.Parse(Console.ReadLine().ToUpper().Substring(0, 1));
+
+            switch (gateBoolean)
+            {
+                case 'Y':
+                    Console.WriteLine("Available paints");
+                    Console.WriteLine("\tM - Mood: Changes colour based on mood ($200)");
+                    Console.WriteLine("\tA - Magic: Changes colour several times a day ($300)");
+                    Console.WriteLine("\tR - Reflective: Reflects like a mirror ($150)");
+                    break;
+
+
+
+
+            }
+            // option if structure
+            Console.Write("Option: ");
+            paintIf = char.Parse(Console.ReadLine().ToUpper().Substring(0, 1));
+            if (paintIf == 'M')
+            {
+                gatePrice += 200;
+            }
+            else if (paintIf == 'A')
+            {
+                gatePrice += 300;
+
+            }
+            else
+            {
+                gatePrice += 150;
+            }
+            // meal upgrade menu
+            Console.WriteLine("***** Meal Upgrade *****");
+            Console.Write("Would you like a meal upgrade (Y/N)? ");
+            mealBoolean = char.Parse(Console.ReadLine().ToUpper().Substring(0, 1));
+            // meal upgrade if structure
+            if (mealBoolean == 'Y')
+            {
+                Console.WriteLine("Available meal upgrades:");
+                Console.WriteLine("\tR - Add rainbow cookie treats ($1000)");
+                Console.WriteLine("\tS - Special appetizers ($500)");
+                mealUpgrade = char.Parse(Console.ReadLine().ToUpper().Substring(0, 1));
+                switch (mealUpgrade)
+                {
+                    case 'R':
+                        mealPrice += 1000
+                        break;
+                    case 'S':
+                        mealPrice +=
+                }
+
+            }
+    
+            
+            /*      switch (gateBoolean)
+            {
+                case 'Y':
+                Console.WriteLine("Available meal upgrades:");
+                Console.WriteLine("\tR - Add rainbow cookie treats ($1000)");
+                Console.WriteLine("\tS - Special appetizers ($500)");
+                    break;
+
+
+
+
+
+            }
+
+*/
+
+
+
+
 
             Console.WriteLine($"Wall Price is now {wallPrice} for {squareFeet} ");
+
+
+
 
         }
     }
