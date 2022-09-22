@@ -21,7 +21,7 @@ namespace unicornassignment
             string donorName = "", unicornName = "";
             char options, optionTotal = ' ', penOptions = ' ', gateOptions = ' ', gateBoolean = ' ', paintIf = ' ', mealBoolean = ' ', mealUpgrade = ' ';
             double monthAmount = 0, months = 0, donationAmount = 0, wallWidth = 0, backWallWidth = 0, gateWidth = 0, gateHeight = 0,
-                wallPrice = 0, wallArea = 0, gateArea = 0, gatePrice = 0, mealPrice = 0, area = 0,;
+                wallPrice = 0, wallArea = 0, gateArea = 0, gatePrice = 0, mealPrice = 0, area = 0;
             // inputs
             // menu donation type
             Console.WriteLine("***** Welcome to the Unicorn Rescue Society Sponsor Estimator *****");
@@ -72,12 +72,6 @@ namespace unicornassignment
             Console.Write("What is the width of the 2 walls (in feet)? ");
             wallWidth = double.Parse(Console.ReadLine());
             Console.Write("What is the width of the back wall (in feet)? ");
-            // 20 width of wall * 12 height feet * 2 for amount of walls
-            // 480 * 4
-            // 1920
-            // 10 - 8 * 12 for back wall
-            // 96
-            // 2 * 12 * 4 = 96
             backWallWidth = double.Parse(Console.ReadLine());
             Console.Write("What is the width of the gate? ");
             gateWidth = double.Parse(Console.ReadLine());
@@ -89,8 +83,16 @@ namespace unicornassignment
             // wall price calculations
             // length x width  = square feet
             if (gateArea < backWallWidth)
+            {
+                gateArea = ((backWallWidth - gateWidth) * (12 * 4));
+            }
+            else
+            {
+                Console.WriteLine("Gate cannot be wider than back wall width");
+                Environment.Exit(0);    
+            }
           
-            wallArea = ((wallWidth * 24) * 4 );
+          
            
 
             // gate menu
@@ -163,10 +165,10 @@ namespace unicornassignment
                 switch (mealUpgrade)
                 {
                     case 'R':
-                        mealPrice += 1000
+                        mealPrice += 1000;
                         break;
                     case 'S':
-                        mealPrice +=
+                       
                 }
 
             }
