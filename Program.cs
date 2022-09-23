@@ -4,10 +4,10 @@ Unicorn Rescue Society. The society works to promote the wellbeing and care of U
 which, once thought to be extinct, are now making a comeback!
 
 
-Input: numbers
+Input: name sponsorname donation
 Output: bill
  Author: Ilyas G
-Date: Sept 19 2022
+Date: Sept 23 2022
  */
 
 
@@ -72,11 +72,10 @@ namespace unicornassignment
             backWallWidth = double.Parse(Console.ReadLine());
             Console.Write("What is the width of the gate? ");
             gateWidth = double.Parse(Console.ReadLine());
-            Console.Write("What is the height of the gate? ");
+            Console.Write("What is the height of the gate (in feet)? ");
             gateHeight = double.Parse(Console.ReadLine());
             // wall price calculations
-
-            if (gateWidth < backWallWidth)
+              if (gateWidth < backWallWidth)
             {
                 gateArea = ((backWallWidth - gateWidth) * (12 * 4));
             }
@@ -88,10 +87,9 @@ namespace unicornassignment
             wallArea = ((wallWidth * 2) * (12 * 4));
             backWallArea = ((backWallWidth) * (12 * 4));
             backGateArea = ((backWallWidth - gateWidth) * (12 * 4));
-            gatePrice = backWallArea + backGateArea;
             wallPrice = wallArea + backWallArea + backGateArea;
-            gateSquareFeet = ((gateWidth + gateHeight) * 4);
-            // gate menu
+            gateSquareFeet = (gateWidth * gateHeight);
+             // gate menu
             Console.WriteLine("***** Gate Style ******");
             Console.WriteLine("Available gates (prices per square foot):");
             Console.WriteLine("\tW- Wooden ($3) ");
@@ -100,7 +98,6 @@ namespace unicornassignment
             Console.Write("Option: ");
             gateOptions = char.Parse(Console.ReadLine().ToUpper().Substring(0, 1));
             // gate options
-
             switch (gateOptions)
             {
                 case 'W':
@@ -144,14 +141,8 @@ namespace unicornassignment
                             break;
 
                     }
-            
-            default:
-                    Console.WriteLine("Invalid Selection");
-                    Environment.Exit(0);
-                    break;
-
-        }
-
+                       break;
+            }
             // meal upgrade menu
             Console.WriteLine("***** Meal Upgrade *****");
             Console.Write("Would you like a meal upgrade (Y/N)? ");
@@ -179,19 +170,32 @@ namespace unicornassignment
                     }
                     break;
             }
-
-            // total price
-            totalPrice = (donationAmount) + (wallPrice) + (gatePrice) + (paintPrice) + (mealPrice) + (mealPrice);
-            // summary
+             // total price
+            totalPrice = (donationAmount) + (wallPrice) + (gatePrice) + (paintPrice) + (mealPrice);
+             // summary
             Console.WriteLine("***** Summary *****");
-            Console.WriteLine($" Donor                       {donorName}");
-            Console.WriteLine($" Unicorn Name                       {unicornName}");
-            Console.WriteLine($" Donation Amount                       {donationAmount}");
-            Console.WriteLine($" Wall Cost                       {wallPrice}");
-            Console.WriteLine($" Gate Cost                       {gatePrice}");
-            Console.WriteLine($" Gate Paint Cost                       {paintPrice}");
-            Console.WriteLine($" Meal Upgrade                      {mealPrice}");
-            Console.WriteLine($"{donorName}, the total cost to sponsor {unicornName} is {totalPrice}");
+            Console.WriteLine($" Donor                            {donorName}");
+            Console.WriteLine($" Unicorn Name                     {unicornName}");
+            Console.WriteLine($" Donation Amount                 ${donationAmount:f2}");
+            Console.WriteLine($" Wall Cost                       ${wallPrice:f2}");
+            Console.WriteLine($" Gate Cost                       ${gatePrice:f2}");
+            if (paintPrice > 0)
+            {
+                Console.WriteLine($"Gate Paint Cost                 ${paintPrice:f2}");
+            }
+            else
+            {
+                Console.WriteLine("Gate Paint Cost                    Original");
+            }
+            if (mealPrice > 0)
+            {
+                Console.WriteLine($"Meal Upgrade                    ${mealPrice:f2}");
+            }
+            else
+            {
+                Console.WriteLine("Meal Upgrade                      None");
+            }
+            Console.WriteLine($"{donorName}, the total cost to sponsor {unicornName} is ${totalPrice:f2}");
 
         }
     }
