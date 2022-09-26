@@ -18,10 +18,31 @@ namespace unicornassignment
         static void Main(string[] args)
         {
             // declare variables
-            string donorName = "", unicornName = "";
-            char options, gateOptions = ' ', gatePaint = ' ', mealUpgrade = ' ', mealPriceOption = ' ', paintOption = ' ';
-            double monthAmount = 0, months = 0, donationAmount = 0, wallWidth = 0, backWallWidth = 0, gateWidth = 0, gateHeight = 0,
-                wallPrice = 0, wallArea = 0, gateArea = 0, gatePrice = 0, mealPrice = 0, backWallArea = 0, backGateArea = 0, paintPrice = 0, totalPrice = 0, gateSquareFeet = 0;
+            string donorName = "", 
+                unicornName = "";
+            char options, 
+                gateOptions = ' ', 
+                gatePaint = ' ', 
+                mealUpgrade = ' ', 
+                mealPriceOption = ' ', 
+                paintOption = ' ';
+            double monthAmount = 0, 
+                months = 0, 
+                donationAmount = 0, 
+                wallWidth = 0, 
+                backWallWidth = 0, 
+                gateWidth = 0, 
+                gateHeight = 0,
+                wallPrice = 0, 
+                wallArea = 0, 
+                gateArea = 0,
+                gatePrice = 0, 
+                mealPrice = 0, 
+                backWallArea = 0, 
+                backGateArea = 0, 
+                paintPrice = 0, 
+                totalPrice = 0, 
+                gateSquareFeet = 0;
             // inputs
             // menu donation type
             Console.WriteLine("***** Welcome to the Unicorn Rescue Society Sponsor Estimator *****");
