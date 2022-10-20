@@ -1,0 +1,119 @@
+	
+namespace test
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int trackLength = 0,
+                playerRoll = 0,
+                computerRoll = 0,
+                playerPosition = 0,
+            computerPosition = 0,
+            playerWinCount = 0,
+            computerWinCount = 0,
+            tieCount = 0,
+            playerRollSum = 0,
+            computerRollSum = 0;
+            bool playerWin = false,
+                computerWin = false,
+                finished = false,
+                validPlayAgain = false;
+            string playerString,
+                 computerString,
+                 winMessage = " ";
+            char playAgain = ' ';
+            Random random = new Random();
+            do
+            {
+                playerPosition = 0;
+                computerPosition = 0;
+                playerRoll = 0;
+                computerRoll = 0;
+                playerWin = false;
+                computerWin = false;
+                finished = false;
+                Console.WriteLine("Welcome to the Unicorn Race");
+                Console.Write("Enter the length of the track: ");
+                trackLength = int.Parse(Console.ReadLine());
+                if (trackLength < 0)
+                {
+                    Console.WriteLine("Error: must provide an integer >0");
+                }
+                Console.Write("Enter a string for your unicorn:");
+                playerString = Console.ReadLine();
+                Console.Write("Enter a string for the computer unicorn:");
+                computerString = Console.ReadLine();
+                Console.Clear();
+                do
+                {
+                    if (playerRoll > 0)
+                    {
+                        Console.WriteLine($"You moved {playerRoll} positions");
+                    }
+                    if (computerRoll > 0)
+                    {
+                        Console.WriteLine($"Computer moved {computerRoll} positions");
+                    }
+                    for (int i = 0; i < trackLength; i++)
+                    {
+                        Console.Write("=");
+                    }
+                    Console.WriteLine();
+                    Console.Write(playerString.PadLeft(playerPosition));
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.Write(computerString.PadLeft(computerPosition));
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    for (int i = 0; i < trackLength; i++)
+                    {
+                        Console.Write("=");
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.Write("Hit enter to roll");
+                    Console.ReadLine();
+                    playerRoll = random.Next(1, 7);
+                    playerPosition += playerRoll;
+                    computerRoll = random.Next(1, 7);
+                    computerPosition += computerRoll;
+                    if (playerPosition > trackLength)
+                    {
+                        finished = true;
+                        winMessage = "Player wins!";
+                        playerWinCount++;
+                        playerWin = true;
+                    }
+                    else if (computerPosition > trackLength)
+                    {
+                        finished = true;
+                        winMessage = "Computer wins!";
+                        computerWinCount++;
+                        computerWin = true;
+                    }
+                    else if (playerPosition == computerPosition && finished == true)
+                    {
+                        winMessage = "It is a tie";
+                        tieCount++;
+                    }
+                    Console.Clear();
+                } while (!finished);
+                Console.WriteLine(winMessage);
+                Console.Write("Would you like to play again?");
+                playAgain = char.Parse(Console.ReadLine().ToUpper().Substring(0, 1));
+                if (playAgain != 'N' && playAgain != 'Y')
+                {
+                    Console.WriteLine("Error: you must enter 'y' or 'n'!");
+                    Console.Write("Would you like to play again?");
+                    playAgain = char.Parse(Console.ReadLine().ToUpper().Substring(0, 1));
+                }
+                Console.Clear();
+            } while (playAgain == 'Y');
+            Console.WriteLine($"You won {playerWinCount} games");
+            Console.WriteLine($"You lost {computerWinCount} games");
+            Console.WriteLine($"You tied {tieCount} game(s)");
+            Console.ReadLine();
+        }
+    }
+}
